@@ -14,7 +14,7 @@
       
       <guid>https://blog.clopend.com/post/oh-my-zsh/</guid>
       <description>&lt;p&gt;安装 Git 以及 zsh&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo apt update
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt update
 sudo apt install git zsh
 &lt;/code&gt;&lt;/pre&gt;</description>
     </item>
