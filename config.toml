@@ -8,6 +8,8 @@ theme = "black-and-light"
 pygmentsstyle       = "bw"
 pygmentscodefences  = true
 
+publishDir = "docs"
+
 [params]
   sitename = "Clopend"
   disableWebFonts = false
