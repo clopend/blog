@@ -1,0 +1,13 @@
+baseurl = "https://blog.clopend.com/"
+title = "Flowers"
+author = "clopend"
+canonifyurls = true
+languagecode = "en"
+theme = "black-and-light"
+
+pygmentsstyle       = "bw"
+pygmentscodefences  = true
+
+[params]
+  sitename = "Clopend"
+  disableWebFonts = false
