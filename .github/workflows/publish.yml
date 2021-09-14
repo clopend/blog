@@ -13,9 +13,9 @@ jobs:
 
     steps:
     - name: Checkout Blog
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
     - name: Build
-    - uses: jakejarvis/hugo-build-action@master
+      uses: jakejarvis/hugo-build-action@master
     - name: Deploy Blog
       uses: peaceiris/actions-gh-pages@v3
       with:
