@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="">
+
+    
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
+    
+
+    <title>
+      
+      
+         HTTP 缓存 
+      
+    </title>
+    <link rel="canonical" href="https://blog.clopend.com/post/http-cache/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: black;
+    text-decoration-skip: ink;
+  }
+
+  body {
+    font-family:'Open Sans', 'Myriad Pro', Myriad, sans-serif;
+    font-size:17px;
+    line-height:160%;
+    color:#1d1313;
+    max-width:700px;
+    margin:auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  .left-justify { float: left; }
+  .right-justify { float:right; }
+
+  pre, code {
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: #f7f7f7;
+  }
+
+  code {
+    font-size: 12px;
+    padding: 4px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Old Standard TT",serif;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align:center;
+    padding:50px;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  #sub-header, .date {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+    margin-left: 5px;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+  ul li:before {
+    content:"\00BB \0020";
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content .date {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size:30px;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(1) {
+    margin-right:0.5em;;
+  }
+
+  #links :nth-child(2) {
+    margin-left:0.5em;;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    *, #nav h1 a {
+      color: #FDFDFD;
+    }
+
+    body {
+      background: #121212;
+    }
+
+    pre, code {
+      background-color: #262626;
+    }
+
+    #sub-header, .date {
+      color: #BABABA;
+    }
+
+    hr {
+      background: #EBEBEB;
+    }
+  }
+</style>
+
+
+    </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="https://blog.clopend.com/">Clopend</a></h1>
+      <ul>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> HTTP 缓存 </h1>
+
+  
+    <div id=sub-header>
+      September 2021 · 1 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <h3 id="分类">分类</h3>
+<ol>
+<li>服务端缓存，又分为代理服务器缓存和反向代理服务器缓存</li>
+<li>客户端缓存，即浏览器缓存</li>
+</ol>
+<h3 id="浏览器的缓存">浏览器的缓存</h3>
+<p><!-- raw HTML omitted -->Expires<!-- raw HTML omitted --> HTTP/1.0中的实现，返回的到期时间是服务器的时间，
+这样一来如果浏览器和服务器时间相差特别大，缓存时间差别就很大，比如服务器和浏览器跨时区。
+这是弊端，所以HTTP/1.1中采用了Cache-Control: max-age=number代替</p>
+<p><!-- raw HTML omitted -->Cache-Control<!-- raw HTML omitted --> 与Expires类似，都是指明当前资源的有效期，
+告诉浏览器直接读缓存还是从服务器重新拉取。Cache-Control拥有比Expires更多的选择。
+(如果同时存在Cache-Control与Expires，则Cache-Control优先级高)</p>
+<p>以上二者都是强缓存，就是说若是命中缓存且缓存还有效就不发送请求，直接返回200(from cache)</p>
+<p>Cache-Control的值可以是以下几种：</p>
+<ul>
+<li>public 可以被任何可缓存区缓存(包括代理服务器以及客户端)</li>
+<li>private 单个用户的缓存，不可被共享，对于其他用户的请求无效，不允许代理服务器缓存</li>
+<li>no-cache 请求或消息不能(或不使用？)缓存</li>
+<li>no-store 完全不存</li>
+<li>no-transform 代理不转换资源类型，例如image/jpg -&gt; image/png</li>
+<li>must-revalidate 和no-cache类似，暂时没弄明白</li>
+<li>proxy-revalidate 代理缓存一旦过期则需向服务器请求</li>
+<li>max-age 资源有效期，单位是秒</li>
+</ul>
+<h3 id="last-modifiedif-modified-since和etagif-none-match">Last-Modified/If-Modified-Since和Etag/If-None-Match</h3>
+<p>这二者都要配合Cache-Control使用，当资源过期时(例如Cache-Control使用了max-age声明)，
+若发现资源带有Last-Modified或Etag声明，则向服务器请求时带上If-Modified-Since或If-None-Match。
+If-Modified-Since表示请求时间，服务器收到后与资源最后的修改时间做对比，
+若发现这个请求时间比最后修改时间新，则说明资源自上次缓存后没有修改过，服务器直接返回304，
+反之则需返回新的资源。而Etag则是服务器生成并且告知浏览器的当前资源在服务器的唯一标识，
+If-None-Match标识Etag的值，服务器收到后可以进行比对，相同则返回304，不同则返回整个资源。</p>
+<h3 id="用户行为与协商缓存">用户行为与协商缓存</h3>
+<table>
+<thead>
+<tr>
+<th>用户行为</th>
+<th style="text-align:center">Expires/Cache-Control</th>
+<th style="text-align:center">Last-Modified/Etag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地址栏回车</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td>页面链接跳转</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td>新开窗口</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td>前进、后退</td>
+<td style="text-align:center">有效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td>F5刷新</td>
+<td style="text-align:center">无效</td>
+<td style="text-align:center">有效</td>
+</tr>
+<tr>
+<td>Ctrl+F5刷新</td>
+<td style="text-align:center">无效</td>
+<td style="text-align:center">无效</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参考">参考</h3>
+<ol>
+<li><a href="https://www.cnblogs.com/520yang/articles/4807408.html">浏览器HTTP协议缓存机制详解</a></li>
+<li><a href="http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html">浏览器缓存机制</a></li>
+</ol>
+  </div>
+
+  <div id=links>
+    
+    
+      <a href="https://blog.clopend.com/post/oh-my-zsh/">Debian 安装 Oh-My-Zsh&nbsp;&raquo;</a>
+    
+  </div>
+</section>
+
+  
+</body>
+</html>
+
+
+
