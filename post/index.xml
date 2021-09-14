@@ -1,36 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on Flowers</title>
-    <link>https://blog.clopend.com/post/</link>
-    <description>Recent content in Posts on Flowers</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 14 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.clopend.com/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Debian 安装 Oh-My-Zsh</title>
-      <link>https://blog.clopend.com/post/oh-my-zsh/</link>
-      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.clopend.com/post/oh-my-zsh/</guid>
-      <description>&lt;p&gt;安装 Git 以及 zsh&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt update
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Flowers</title><link>https://blog.clopend.com/post/</link><description>Recent content in Posts on Flowers</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 14 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.clopend.com/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 安装 Oh-My-Zsh</title><link>https://blog.clopend.com/post/oh-my-zsh/</link><pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate><guid>https://blog.clopend.com/post/oh-my-zsh/</guid><description>&lt;p>安装 Git 以及 zsh&lt;/p>
+&lt;pre>&lt;code>sudo apt update
 sudo apt install git zsh
-&lt;/code&gt;&lt;/pre&gt;</description>
-    </item>
-    
-    <item>
-      <title>HTTP 缓存</title>
-      <link>https://blog.clopend.com/post/http-cache/</link>
-      <pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.clopend.com/post/http-cache/</guid>
-      <description>&lt;h3 id=&#34;分类&#34;&gt;分类&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;服务端缓存，又分为代理服务器缓存和反向代理服务器缓存&lt;/li&gt;
-&lt;li&gt;客户端缓存，即浏览器缓存&lt;/li&gt;
-&lt;/ol&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+&lt;/code>&lt;/pre></description></item><item><title>HTTP 缓存</title><link>https://blog.clopend.com/post/http-cache/</link><pubDate>Tue, 14 Sep 2021 00:00:00 +0000</pubDate><guid>https://blog.clopend.com/post/http-cache/</guid><description>&lt;h3 id="分类">分类&lt;/h3>
+&lt;ol>
+&lt;li>服务端缓存，又分为代理服务器缓存和反向代理服务器缓存&lt;/li>
+&lt;li>客户端缓存，即浏览器缓存&lt;/li>
+&lt;/ol></description></item></channel></rss>
