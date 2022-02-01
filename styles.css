@@ -1,0 +1,18 @@
+.icon {
+  vertical-align: middle;
+  padding-right: .25rem;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.pre {
+  float: left;
+}
+
+.next {
+  float: right;
+}
