@@ -1,15 +1,12 @@
 baseurl = "https://blog.clopend.com/"
-title = "Flowers"
-author = "clopend"
+title = "Clopend"
+author = "Clopend"
 canonifyurls = true
-languagecode = "en"
-theme = "black-and-light"
-
-pygmentsstyle       = "bw"
-pygmentscodefences  = true
+languagecode = "zh-Hans"
 
 publishDir = "docs"
 
 [params]
   sitename = "Clopend"
-  disableWebFonts = false
+  slogan = "Less is More"
+
