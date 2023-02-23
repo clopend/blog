@@ -9,4 +9,5 @@ publishDir = "docs"
 [params]
   sitename = "Clopend"
   slogan = "Less is More"
+  github = "https://github.com/clopend"
 
