@@ -1,4 +1,4 @@
-baseurl = "https://blog.clopend.com/"
+baseurl = "https://clopend.com/"
 title = "Clopend"
 author = "Clopend"
 canonifyurls = true
